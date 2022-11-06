@@ -11,6 +11,7 @@ g) Paid Amount
 */
 select
 	c.first_name||' '||c.last_name as customer_name,
+	n.country as country_name,
 	f.title as seen_movies,
 	g.name as category_name,
 	string_agg(distinct ac.first_name||' '||ac.last_name, ', ') as actor_name,
@@ -32,6 +33,7 @@ from customer c
 	inner join actor ac using(actor_id)
 	inner join language l using(language_id)
 group by customer_name,
+	country_name,
 	seen_movies,
 	category_name,
 	language_name,
